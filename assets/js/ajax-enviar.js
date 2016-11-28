@@ -6,11 +6,11 @@ jQuery(document).ready(function(){
         $.ajax({
             type: "POST",
             url: "enviar.php",
-            dataType: "html",
+            dataType: "application/json",
             data: {
-                'nome' : $('inputEmail').val(),
-                'email': $('inputNome').val(),
-                'msg' : $('inputMsg').val()
+                'nome' : $('#inputEmail').val(),
+                'email': $('#inputNome').val(),
+                'msg' : $('#inputMsg').val()
             },
             success: function(data)
             {
@@ -24,8 +24,8 @@ jQuery(document).ready(function(){
             error: function(erro) 
             {
                 var spanEmail = document.getElementById("spanEmail");
-                var cont = "Email enviado com sucesso";
-                spanEmail.addClass('alert alert-warning');
+                var cont = "Email não foi enviado: " . erro;
+                
                 spanEmail.className = "alert alert-warning";
                 spanEmail.innerHTML = cont;
             }
