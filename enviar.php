@@ -53,7 +53,7 @@ $mensagem = $_POST['msg'];
   $assunto = "Contato pelo Site";
 
   // É necessário indicar que o formato do e-mail é html
-  $headers  = 'MIME-Version: 1.0' . "\r\n";
+  $headers  = 'MIME-Version: 1.0' . "\n";
   $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\n";
   $headers .= "From: $nome <$email>";
   //$headers .= "Bcc: $EmailPadrao\r\n";
