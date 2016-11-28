@@ -24,7 +24,7 @@ jQuery(document).ready(function(){
             error: function(erro) 
             {
                 var spanEmail = document.getElementById("spanEmail");
-                var cont = "Email não foi enviado: " . erro;
+                var cont = "Email não foi enviado: " + erro;
                 
                 spanEmail.className = "alert alert-warning";
                 spanEmail.innerHTML = cont;
