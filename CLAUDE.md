@@ -4,41 +4,45 @@ Este arquivo fornece orientações ao Claude Code (claude.ai/code) ao trabalhar 
 
 ## Visão Geral do Projeto
 
-Site HTML estático da ABEASF (Associação Beneficente Antonio Soares Freitas), organização social brasileira. Não há sistema de build — o site executa diretamente a partir do `index.html`.
+Site HTML estático da ABEASF (Associação Beneficente Antonio Soares Freitas), organização social brasileira localizada em Itaúna, MG. Não há sistema de build — o site executa diretamente a partir do `index.html`.
 
 ## Executando Localmente
 
-Sirva com qualquer servidor HTTP com suporte a PHP (necessário para o formulário de contato):
+Qualquer servidor HTTP estático serve:
 
 ```powershell
-# Python (apenas estático, sem formulário de contato)
+# Python
 python -m http.server 8080
-
-# Servidor embutido do PHP (habilita o formulário de contato)
-php -S localhost:8080
 ```
 
 Abra `http://localhost:8080` no navegador.
 
 ## Arquitetura
 
-**Site de página única** (`index.html`) com três seções âncora: `#about`, `#projects`, `#contact`.
+**Site de página única** (`index.html`) com seções âncora: `#home`, `#about`, `#projetos`, `#contact` (mais uma seção de localização sem link na nav).
+
+Arquivos ativamente usados:
 
 ```
-index.html          # Todo o markup do site; uma página com seções Bootstrap 3
-enviar.php          # Handler de e-mail do formulário de contato (PHP mail())
-assets/
-  css/main.css      # Estilos customizados principais
-  js/ajax-enviar.js # Envio AJAX do formulário de contato (POST para enviar.php)
-  js/jquery-func.js # Lógica de scrollspy e estado ativo da nav
-  js/ModalShow.js   # Modais de imagem
+index.html              # Todo o markup + JS inline (tema e navbar)
+assets/css/main.css     # Único stylesheet customizado; usa variáveis CSS para temas
+assets/img/             # Logo, favicon e imagens de fundo (bg/itauna.jpg, bg/pj.jpg)
 ```
 
-**Stack**: Bootstrap 3 + jQuery 1.x. Sem transpilação, bundling ou gerenciamento de pacotes.
+**Stack**: Bootstrap 5.3.3 + Bootstrap Icons 1.11.3 + Google Fonts (Lato, Raleway), todos via CDN. Sem jQuery, sem PHP, sem bundler.
+
+**Arquivos legacy** (presentes no repositório mas não referenciados pelo `index.html` atual): `enviar.php`, `assets/js/*`, `assets/css/bootstrap.css`, `assets/css/animate-custom.css`, `assets/css/ModalShow.css`, `assets/css/icomoon*`, `assets/fonts/glyphicons-*`, `assets/img/modal/`, `assets/img/logo-trans-old.png`. Restos da v1 do site — não usar como referência ao editar.
 
 ## Comportamentos Importantes
 
-- **Navbar**: Fixada no topo, colapsa em mobile. Estado ativo controlado pelo scrollspy em `jquery-func.js` observando `#about`, `#projects`, `#contact`.
-- **Formulário de contato**: POST AJAX para `enviar.php`; feedback de sucesso/erro injetado em `#form-msg`.
-- **Scroll suave**: `smoothscroll.js` intercepta todos os cliques em âncoras `href="#..."`.
-- **Modais**: `ModalShow.js` abre imagens de `assets/img/modal/` em modais Bootstrap.
+- **Tema claro/escuro**: Toggle no canto da navbar (`#themeToggle`) que alterna o atributo `data-theme` em `<html>` e persiste em `localStorage`. Um script anti-flash no `<head>` aplica o tema salvo antes da renderização. Todas as cores são definidas via custom properties em `:root` e sobrescritas em `[data-theme="dark"]`.
+- **Navbar**: Fixada no topo, ganha sombra ao rolar (classe `.scrolled` via listener inline). Scrollspy é nativo do Bootstrap 5 (`data-bs-spy="scroll"` no `<body>` apontando para `#navbar-main`).
+- **Scroll suave**: CSS-only (`html { scroll-behavior: smooth }` em `main.css`). Não há JS de smooth scroll.
+- **Localização**: Seção com background fixo (parallax) e overlay azul translúcido sobre `assets/img/bg/itauna.jpg`. Links dentro de `.location-info` precisam de cor branca explícita para não colidir com o overlay azul.
+- **Contato**: Apenas informações estáticas (endereço, WhatsApp, e-mail, site, CNPJ/PIX). Não há mais formulário de contato.
+
+## Convenções
+
+- HTML/CSS/JS em português brasileiro (textos, comentários, identificadores quando significativos).
+- Cores e espaçamentos via variáveis CSS já definidas em `main.css` (`--primary`, `--text`, `--radius`, etc) — evitar valores literais.
+- Para qualquer elemento que apareça sobre fundos coloridos (seções `.section-location` e `.section-projects`), validar contraste em ambos os temas.
