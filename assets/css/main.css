@@ -345,6 +345,22 @@ a:hover {
     margin-bottom: .5rem;
 }
 
+.location-info a {
+    color: #fff;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(255, 255, 255, .55);
+    transition: border-color var(--transition), color var(--transition);
+}
+
+.location-info a:hover {
+    color: #fff;
+    border-bottom-color: #fff;
+}
+
+.location-info .bi-whatsapp {
+    color: #fff;
+}
+
 /* ==========================================================================
    Contato
    ========================================================================== */
@@ -383,6 +399,244 @@ a:hover {
     flex-shrink: 0;
     width: 1.4rem;
     text-align: center;
+}
+
+.section-contact .text-muted {
+    color: var(--text-muted) !important;
+}
+
+/* ==========================================================================
+   Cardápio — Hero (logo grande, mobile-first)
+   ========================================================================== */
+.menu-hero {
+    background: linear-gradient(135deg, var(--light-bg) 0%, var(--primary-light) 100%);
+    padding: calc(var(--navbar-h) + 1.5rem) 0 1.5rem;
+    text-align: center;
+}
+
+.menu-hero-logo {
+    display: block;
+    width: 92%;
+    max-width: 720px;
+    margin: 0 auto 1rem;
+    filter: drop-shadow(0 4px 24px rgba(0, 0, 0, .12));
+}
+
+.menu-hero-tagline {
+    font-family: 'Raleway', sans-serif;
+    font-weight: 700;
+    font-size: 1.75rem;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--primary);
+    margin: 0;
+}
+
+/* ==========================================================================
+   Cardápio — Conteúdo em 2 colunas
+   ========================================================================== */
+.menu-content {
+    padding: 3rem 0 4rem;
+    background: #fff;
+}
+
+.menu-column {
+    background: var(--light-bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 2rem 1.75rem;
+    height: 100%;
+    box-shadow: var(--shadow-md);
+    transition: transform var(--transition), box-shadow var(--transition);
+}
+
+.menu-column:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+}
+
+.menu-column-feature {
+    background: linear-gradient(160deg, var(--primary-light) 0%, var(--light-bg) 100%);
+    border-color: var(--primary);
+}
+
+.menu-column-header {
+    text-align: center;
+    padding-bottom: 1.25rem;
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border);
+}
+
+.menu-column-icon {
+    display: block;
+    width: 96px;
+    height: 96px;
+    margin: 0 auto .75rem;
+    object-fit: contain;
+}
+
+.menu-column-title {
+    font-family: 'Raleway', sans-serif;
+    font-weight: 700;
+    font-size: 1.5rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--dark);
+    margin: 0;
+}
+
+.menu-column-subtitle {
+    font-family: 'Raleway', sans-serif;
+    font-size: .85rem;
+    font-weight: 400;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin: .25rem 0 0;
+}
+
+.menu-column-intro {
+    color: var(--text);
+    font-size: 1rem;
+    text-align: center;
+    margin-bottom: 1.25rem;
+}
+
+.menu-ingredients {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.menu-ingredients li {
+    color: var(--text);
+    font-size: 1rem;
+    padding: .45rem 0;
+    display: flex;
+    align-items: center;
+    gap: .65rem;
+}
+
+.menu-ingredients li + li {
+    border-top: 1px dashed var(--border);
+}
+
+.menu-ingredients i {
+    color: var(--primary);
+    font-size: 1.1rem;
+    flex-shrink: 0;
+}
+
+.menu-items {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.menu-item {
+    padding: .9rem 0;
+    border-bottom: 1px dashed var(--border);
+}
+
+.menu-item:last-child {
+    border-bottom: none;
+}
+
+.menu-item h3 {
+    font-size: 1.05rem;
+    color: var(--primary);
+    margin: 0 0 .25rem;
+    letter-spacing: .5px;
+}
+
+.menu-item p {
+    color: var(--text);
+    font-size: .92rem;
+    margin: 0;
+    line-height: 1.5;
+}
+
+/* ==========================================================================
+   Cardápio — CTA
+   ========================================================================== */
+.menu-cta {
+    margin-top: 3rem;
+    padding: 2rem 1.5rem;
+    background: var(--light-bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+}
+
+.menu-cta-text {
+    color: var(--text);
+    font-size: 1rem;
+    margin: 0 0 1.25rem;
+}
+
+.btn-menu-cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--primary);
+    color: #fff;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 700;
+    font-size: 1.05rem;
+    letter-spacing: 1.5px;
+    padding: .8rem 2rem;
+    border-radius: 999px;
+    box-shadow: var(--shadow-md);
+    transition: background var(--transition), transform var(--transition), box-shadow var(--transition);
+}
+
+.btn-menu-cta:hover {
+    background: var(--primary-dark);
+    color: #fff;
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+}
+
+.menu-event {
+    display: inline-flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: .5rem 1rem;
+    background: var(--primary);
+    color: #fff;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 700;
+    font-size: 1.05rem;
+    letter-spacing: 1px;
+    padding: .85rem 1.75rem;
+    border-radius: 999px;
+    box-shadow: var(--shadow-md);
+}
+
+.menu-event-item {
+    display: inline-flex;
+    align-items: center;
+    gap: .45rem;
+}
+
+.menu-event-item i {
+    font-size: 1.1rem;
+}
+
+.menu-event-divider {
+    opacity: .55;
+}
+
+@media (max-width: 480px) {
+    .menu-event {
+        flex-direction: column;
+        border-radius: var(--radius);
+        padding: 1rem 1.5rem;
+    }
+
+    .menu-event-divider {
+        display: none;
+    }
 }
 
 /* ==========================================================================
@@ -426,6 +680,34 @@ a:hover {
     .section-location {
         background-attachment: scroll;
     }
+
+    /* Cardápio — mobile-first: logo bem grande, colunas empilhadas */
+    .menu-hero {
+        padding-top: calc(var(--navbar-h) + 1rem);
+    }
+
+    .menu-hero-logo {
+        width: 96%;
+        max-width: 560px;
+    }
+
+    .menu-hero-tagline {
+        font-size: 1.25rem;
+        letter-spacing: 3px;
+    }
+
+    .menu-content {
+        padding: 2rem 0 3rem;
+    }
+
+    .menu-column {
+        padding: 1.75rem 1.25rem;
+    }
+
+    .menu-column-title {
+        font-size: 1.25rem;
+        letter-spacing: 1.5px;
+    }
 }
 
 /* ==========================================================================
@@ -460,6 +742,26 @@ a:hover {
 
 [data-theme="dark"] .section-contact {
     background: #0f172a;
+}
+
+[data-theme="dark"] .menu-hero {
+    background: linear-gradient(135deg, #0f172a 0%, #1d3461 100%);
+}
+
+[data-theme="dark"] .menu-content {
+    background: #0f172a;
+}
+
+[data-theme="dark"] .menu-column {
+    background: #1e293b;
+}
+
+[data-theme="dark"] .menu-column-feature {
+    background: linear-gradient(160deg, #1d3461 0%, #1e293b 100%);
+}
+
+[data-theme="dark"] .menu-cta {
+    background: #1e293b;
 }
 
 [data-theme="dark"] .site-footer {
