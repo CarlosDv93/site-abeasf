@@ -144,6 +144,37 @@ a:hover {
     width: 70%;
 }
 
+.nav-quick {
+    display: inline-flex;
+    align-items: center;
+    background: var(--primary);
+    color: #fff;
+    font-family: 'Raleway', sans-serif;
+    font-size: .72rem;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: .45rem 1rem;
+    border-radius: 999px;
+    text-decoration: none;
+    line-height: 1;
+    transition: background var(--transition), color var(--transition), transform var(--transition);
+}
+
+.nav-quick:hover,
+.nav-quick:focus {
+    background: var(--primary-dark);
+    color: #fff;
+    transform: translateY(-1px);
+}
+
+.nav-quick-active {
+    background: rgba(255, 255, 255, .14);
+    color: rgba(255, 255, 255, .9);
+    border: 1px solid rgba(255, 255, 255, .25);
+    pointer-events: none;
+}
+
 .theme-toggle {
     background: transparent;
     border: 1px solid rgba(255, 255, 255, .22);
@@ -403,6 +434,42 @@ a:hover {
 
 .section-contact .text-muted {
     color: var(--text-muted) !important;
+}
+
+.btn-copy {
+    display: inline-flex;
+    align-items: center;
+    gap: .35rem;
+    margin-left: .5rem;
+    padding: .25rem .65rem;
+    background: transparent;
+    color: var(--primary);
+    border: 1px solid var(--primary);
+    border-radius: 999px;
+    font-family: 'Raleway', sans-serif;
+    font-size: .78rem;
+    font-weight: 700;
+    letter-spacing: .5px;
+    line-height: 1;
+    cursor: pointer;
+    transition: background var(--transition), color var(--transition), border-color var(--transition);
+}
+
+.btn-copy:hover,
+.btn-copy:focus-visible {
+    background: var(--primary);
+    color: #fff;
+    outline: none;
+}
+
+.btn-copy.is-copied {
+    background: #16a34a;
+    border-color: #16a34a;
+    color: #fff;
+}
+
+.btn-copy i {
+    font-size: .95rem;
 }
 
 /* ==========================================================================
