@@ -39,7 +39,10 @@
                     <li class="nav-item"><a class="nav-link" href="#contact">Contato</a></li>
                 </ul>
             </div>
-            <button class="theme-toggle ms-auto ms-lg-3" id="themeToggle" aria-label="Alternar tema">
+            <a class="nav-quick d-lg-none ms-auto" href="cardapio.html">
+                <i class="bi bi-journal-text me-1"></i>Cardápio
+            </a>
+            <button class="theme-toggle ms-2 ms-lg-3" id="themeToggle" aria-label="Alternar tema">
                 <i class="bi bi-moon-fill" id="themeIcon"></i>
             </button>
             <button class="navbar-toggler border-0 d-lg-none ms-2" type="button" data-bs-toggle="collapse"
@@ -185,7 +188,13 @@
                     </p>
                     <p class="mb-3">
                         <span class="text-muted">CNPJ (chave PIX):</span>
-                        <span class="fw-semibold">21.938.605/0001-06</span>
+                        <span class="fw-semibold" id="pixKey">21.938.605/0001-06</span>
+                        <button type="button" class="btn-copy" id="copyPixBtn"
+                                data-copy-target="pixKey"
+                                aria-label="Copiar CNPJ para a área de transferência">
+                            <i class="bi bi-clipboard" aria-hidden="true"></i>
+                            <span class="btn-copy-label">Copiar</span>
+                        </button>
                     </p>
                     <p class="fw-semibold">Agradecemos a todos que nos ajudam!</p>
                 </div>
@@ -227,6 +236,74 @@
 
             btn.addEventListener('click', function () {
                 setTheme(html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+            });
+        })();
+
+        // Copiar CNPJ (chave PIX) para a área de transferência
+        (function () {
+            var btn = document.getElementById('copyPixBtn');
+            if (!btn) return;
+
+            var icon  = btn.querySelector('i');
+            var label = btn.querySelector('.btn-copy-label');
+            var originalIcon  = icon.className;
+            var originalLabel = label.textContent;
+            var resetTimer;
+
+            btn.addEventListener('click', function () {
+                var target = document.getElementById(btn.dataset.copyTarget);
+                if (!target) return;
+                var text = target.textContent.trim();
+
+                var done = function () {
+                    btn.classList.add('is-copied');
+                    icon.className   = 'bi bi-check2';
+                    label.textContent = 'Copiado!';
+                    clearTimeout(resetTimer);
+                    resetTimer = setTimeout(function () {
+                        btn.classList.remove('is-copied');
+                        icon.className   = originalIcon;
+                        label.textContent = originalLabel;
+                    }, 1800);
+                };
+
+                if (navigator.clipboard && window.isSecureContext) {
+                    navigator.clipboard.writeText(text).then(done).catch(fallback);
+                } else {
+                    fallback();
+                }
+
+                function fallback() {
+                    var isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+                    var ta = document.createElement('textarea');
+                    ta.value = text;
+                    // iOS exige editável e visível para permitir cópia via execCommand
+                    ta.contentEditable = 'true';
+                    ta.readOnly = false;
+                    ta.style.position = 'fixed';
+                    ta.style.top = '0';
+                    ta.style.left = '0';
+                    ta.style.width = '1px';
+                    ta.style.height = '1px';
+                    ta.style.opacity = '0';
+                    ta.style.fontSize = '16px'; // evita auto-zoom no iOS
+                    document.body.appendChild(ta);
+
+                    if (isIOS) {
+                        var range = document.createRange();
+                        range.selectNodeContents(ta);
+                        var sel = window.getSelection();
+                        sel.removeAllRanges();
+                        sel.addRange(range);
+                        ta.setSelectionRange(0, 999999);
+                    } else {
+                        ta.focus();
+                        ta.select();
+                    }
+
+                    try { document.execCommand('copy'); done(); } catch (e) { /* silencioso */ }
+                    document.body.removeChild(ta);
+                }
             });
         })();
     </script>
